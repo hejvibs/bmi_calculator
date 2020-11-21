@@ -35,7 +35,7 @@ class ResultsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(arguments.resultText, style: kResultTextStyle),
+                  Text(arguments.resultText.toUpperCase(), style: kResultTextStyle),
                   Text(arguments.resultValue, style: kBMITextStyle),
                   Text(
                     arguments.resultInterpretation,
