@@ -5,5 +5,5 @@ import 'screens/input_page.dart';
 
 var customRoutes = <String, WidgetBuilder>{
   '/': (context) => InputPage(),
-  '/results_page': (context) => ResultsPage(),
+  ResultsPage.routeName: (context) => ResultsPage(ModalRoute.of(context).settings.arguments),
 };
