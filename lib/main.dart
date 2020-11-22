@@ -1,4 +1,5 @@
-import 'package:bmi_calculator/custom_routes.dart';
+import 'package:bmi_calculator/screens/input_page.dart';
+import 'package:bmi_calculator/utils/route_generator.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(BMICalculator());
@@ -11,8 +12,8 @@ class BMICalculator extends StatelessWidget {
         primaryColor: Color(0xff0A0E21),
         scaffoldBackgroundColor: Color(0xff0A0E21),
       ),
-      initialRoute: '/',
-      routes: customRoutes,
+      initialRoute: InputPage.routeName,
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
