@@ -3,10 +3,12 @@ import 'package:bmi_calculator/components/bottom_button.dart';
 import 'package:bmi_calculator/components/icon_content.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/components/round_icon_button.dart';
+import 'package:bmi_calculator/routes.dart';
 import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:bmi_calculator/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sailor/sailor.dart';
 
 enum Gender { male, female }
 
@@ -185,13 +187,14 @@ class _InputPageState extends State<InputPage> {
             BottomButton(
               onTap: () {
                 CalculatorBrain calcBrain = CalculatorBrain(height: height, weight: weight);
-                Navigator.of(context).pushNamed(
+                Routes.sailor.navigate(
                   ResultsPage.routeName,
-                  arguments: ResultsPageArguments(
-                    resultValue: '${calcBrain.getResultValue()}',
-                    resultText: '${calcBrain.getResultText()}',
-                    resultInterpretation: '${calcBrain.getResultInterpretation()}',
-                  ),
+                  navigationType: NavigationType.push,
+                  params: {
+                    'bmiResultValue': '${calcBrain.getResultValue()}',
+                    'bmiResultText': '${calcBrain.getResultText()}',
+                    'bmiResultInterpretation': '${calcBrain.getResultInterpretation()}',
+                  },
                 );
               },
               buttonTitle: 'CALCULATE',
@@ -201,16 +204,4 @@ class _InputPageState extends State<InputPage> {
       ),
     );
   }
-}
-
-class ResultsPageArguments {
-  ResultsPageArguments({
-    @required this.resultValue,
-    @required this.resultText,
-    @required this.resultInterpretation,
-  });
-
-  final String resultValue;
-  final String resultText;
-  final String resultInterpretation;
 }

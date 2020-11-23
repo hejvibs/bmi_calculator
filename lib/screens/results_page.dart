@@ -1,14 +1,16 @@
 import 'package:bmi_calculator/components/bottom_button.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
-import 'package:bmi_calculator/screens/input_page.dart';
+import 'package:bmi_calculator/routes.dart';
 import 'package:bmi_calculator/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ResultsPage extends StatelessWidget {
   static const routeName = '/results_page';
-  ResultsPage({@required this.arguments});
+  ResultsPage({@required this.bmiResultValue, @required this.bmiResultText, @required this.bmiResultInterpretation});
 
-  final ResultsPageArguments arguments;
+  final String bmiResultValue;
+  final String bmiResultText;
+  final String bmiResultInterpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +37,10 @@ class ResultsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(arguments.resultText.toUpperCase(), style: kResultTextStyle),
-                  Text(arguments.resultValue, style: kBMITextStyle),
+                  Text(bmiResultText.toUpperCase(), style: kResultTextStyle),
+                  Text(bmiResultValue, style: kBMITextStyle),
                   Text(
-                    arguments.resultInterpretation,
+                    bmiResultInterpretation,
                     style: kBodyTextStyle,
                     textAlign: TextAlign.center,
                   ),
@@ -48,7 +50,7 @@ class ResultsPage extends StatelessWidget {
           ),
           BottomButton(
             onTap: () {
-              Navigator.pop(context);
+              Routes.sailor.pop(true);
             },
             buttonTitle: 'RE-CALCULATE',
           ),

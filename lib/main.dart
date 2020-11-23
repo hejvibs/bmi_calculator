@@ -1,8 +1,12 @@
+import 'package:bmi_calculator/routes.dart';
 import 'package:bmi_calculator/screens/input_page.dart';
-import 'package:bmi_calculator/utils/route_generator.dart';
 import 'package:flutter/material.dart';
+import 'package:sailor/sailor.dart';
 
-void main() => runApp(BMICalculator());
+void main() {
+  Routes.createRoute();
+  runApp(BMICalculator());
+}
 
 class BMICalculator extends StatelessWidget {
   @override
@@ -13,7 +17,11 @@ class BMICalculator extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xff0A0E21),
       ),
       initialRoute: InputPage.routeName,
-      onGenerateRoute: RouteGenerator.generateRoute,
+      onGenerateRoute: Routes.sailor.generator(),
+      navigatorKey: Routes.sailor.navigatorKey,
+      navigatorObservers: [
+        SailorLoggingObserver(),
+      ],
     );
   }
 }
