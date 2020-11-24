@@ -4,18 +4,14 @@ import 'package:bmi_calculator/components/icon_content.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/components/round_icon_button.dart';
 import 'package:bmi_calculator/models/request_page_arguments.dart';
-import 'package:bmi_calculator/routes.dart';
-import 'package:bmi_calculator/screens/results_page.dart';
+import 'package:bmi_calculator/routes/app_router.gr.dart';
 import 'package:bmi_calculator/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sailor/sailor.dart';
 
 enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
-  static const routeName = '/';
-
   @override
   _InputPageState createState() => _InputPageState();
 }
@@ -188,14 +184,12 @@ class _InputPageState extends State<InputPage> {
             BottomButton(
               onTap: () {
                 CalculatorBrain calcBrain = CalculatorBrain(height: height, weight: weight);
-                Routes.sailor(
-                  // Sailor is a callable class, so you can omit navigate and directly call the method.
-                  ResultsPage.routeName,
-                  navigationType: NavigationType.push,
-                  args: ResultsPageArguments(
-                    bmiResultValue: '${calcBrain.getResultValue()}',
-                    bmiResultText: '${calcBrain.getResultText()}',
-                    bmiResultInterpretation: '${calcBrain.getResultInterpretation()}',
+                AppRouter.navigator.pushNamed(
+                  AppRouter.resultsPage,
+                  arguments: ResultsPageArguments(
+                    bmiResultValue: calcBrain.getResultValue(),
+                    bmiResultText: calcBrain.getResultText(),
+                    bmiResultInterpretation: calcBrain.getResultInterpretation(),
                   ),
                 );
               },

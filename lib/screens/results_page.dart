@@ -1,13 +1,12 @@
 import 'package:bmi_calculator/components/bottom_button.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/models/request_page_arguments.dart';
-import 'package:bmi_calculator/routes.dart';
+import 'package:bmi_calculator/routes/app_router.gr.dart';
 import 'package:bmi_calculator/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ResultsPage extends StatelessWidget {
-  static const routeName = '/results_page';
-  ResultsPage(this.resultsPageArguments);
+  ResultsPage({@required this.resultsPageArguments});
   final ResultsPageArguments resultsPageArguments;
 
   @override
@@ -48,7 +47,7 @@ class ResultsPage extends StatelessWidget {
           ),
           BottomButton(
             onTap: () {
-              Routes.sailor.pop(true);
+              AppRouter.navigator.pop();
             },
             buttonTitle: 'RE-CALCULATE',
           ),

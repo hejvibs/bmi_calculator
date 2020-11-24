@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sailor/sailor.dart';
 
-class ResultsPageArguments extends BaseArguments {
+class ResultsPageArguments {
   ResultsPageArguments({
     @required this.bmiResultValue,
     @required this.bmiResultText,
