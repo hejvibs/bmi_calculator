@@ -15,19 +15,11 @@ class Routes {
         },
       ),
       SailorRoute(
-          name: ResultsPage.routeName,
-          builder: (context, args, params) {
-            return ResultsPage(
-              bmiResultValue: params.param('bmiResultValue'),
-              bmiResultText: params.param('bmiResultText'),
-              bmiResultInterpretation: params.param('bmiResultInterpretation'),
-            );
-          },
-          params: [
-            SailorParam<String>(name: 'bmiResultValue', isRequired: true),
-            SailorParam<String>(name: 'bmiResultText', isRequired: true),
-            SailorParam<String>(name: 'bmiResultInterpretation', isRequired: true),
-          ]),
+        name: ResultsPage.routeName,
+        builder: (context, args, params) {
+          return ResultsPage(args);
+        },
+      ),
       SailorRoute(
         name: ErrorPage.routeName,
         builder: (context, args, params) {

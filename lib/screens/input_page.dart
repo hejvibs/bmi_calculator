@@ -3,6 +3,7 @@ import 'package:bmi_calculator/components/bottom_button.dart';
 import 'package:bmi_calculator/components/icon_content.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/components/round_icon_button.dart';
+import 'package:bmi_calculator/models/request_page_arguments.dart';
 import 'package:bmi_calculator/routes.dart';
 import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:bmi_calculator/utils/constants.dart';
@@ -187,14 +188,15 @@ class _InputPageState extends State<InputPage> {
             BottomButton(
               onTap: () {
                 CalculatorBrain calcBrain = CalculatorBrain(height: height, weight: weight);
-                Routes.sailor.navigate(
+                Routes.sailor(
+                  // Sailor is a callable class, so you can omit navigate and directly call the method.
                   ResultsPage.routeName,
                   navigationType: NavigationType.push,
-                  params: {
-                    'bmiResultValue': '${calcBrain.getResultValue()}',
-                    'bmiResultText': '${calcBrain.getResultText()}',
-                    'bmiResultInterpretation': '${calcBrain.getResultInterpretation()}',
-                  },
+                  args: ResultsPageArguments(
+                    bmiResultValue: '${calcBrain.getResultValue()}',
+                    bmiResultText: '${calcBrain.getResultText()}',
+                    bmiResultInterpretation: '${calcBrain.getResultInterpretation()}',
+                  ),
                 );
               },
               buttonTitle: 'CALCULATE',

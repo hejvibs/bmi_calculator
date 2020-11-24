@@ -1,16 +1,14 @@
 import 'package:bmi_calculator/components/bottom_button.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
+import 'package:bmi_calculator/models/request_page_arguments.dart';
 import 'package:bmi_calculator/routes.dart';
 import 'package:bmi_calculator/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ResultsPage extends StatelessWidget {
   static const routeName = '/results_page';
-  ResultsPage({@required this.bmiResultValue, @required this.bmiResultText, @required this.bmiResultInterpretation});
-
-  final String bmiResultValue;
-  final String bmiResultText;
-  final String bmiResultInterpretation;
+  ResultsPage(this.resultsPageArguments);
+  final ResultsPageArguments resultsPageArguments;
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +35,10 @@ class ResultsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(bmiResultText.toUpperCase(), style: kResultTextStyle),
-                  Text(bmiResultValue, style: kBMITextStyle),
+                  Text(resultsPageArguments.bmiResultText.toUpperCase(), style: kResultTextStyle),
+                  Text(resultsPageArguments.bmiResultValue, style: kBMITextStyle),
                   Text(
-                    bmiResultInterpretation,
+                    resultsPageArguments.bmiResultInterpretation,
                     style: kBodyTextStyle,
                     textAlign: TextAlign.center,
                   ),
