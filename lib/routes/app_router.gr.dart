@@ -9,7 +9,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:auto_route/router_utils.dart';
 import 'package:bmi_calculator/screens/input_page.dart';
 import 'package:bmi_calculator/screens/results_page.dart';
-import 'package:bmi_calculator/models/request_page_arguments.dart';
 import 'package:bmi_calculator/screens/error_page.dart';
 
 class AppRouter {
@@ -34,7 +33,10 @@ class AppRouter {
         }
         final typedArgs = args as ResultsPageArguments;
         return MaterialPageRoute(
-          builder: (_) => ResultsPage(resultsPageArguments: typedArgs),
+          builder: (_) => ResultsPage(
+              bmiResultValue: typedArgs.bmiResultValue,
+              bmiResultText: typedArgs.bmiResultText,
+              bmiResultInterpretation: typedArgs.bmiResultInterpretation),
           settings: settings,
         );
       case AppRouter.errorPage:
@@ -46,4 +48,19 @@ class AppRouter {
         return unknownRoutePage(settings.name);
     }
   }
+}
+
+//**************************************************************************
+// Arguments holder classes
+//***************************************************************************
+
+//ResultsPage arguments holder class
+class ResultsPageArguments {
+  final String bmiResultValue;
+  final String bmiResultText;
+  final String bmiResultInterpretation;
+  ResultsPageArguments(
+      {@required this.bmiResultValue,
+      @required this.bmiResultText,
+      @required this.bmiResultInterpretation});
 }
